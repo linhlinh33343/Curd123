@@ -39,11 +39,11 @@ const store = createStore({
   actions: {
     loadPosts({ commit }) {
       axios.get("https://jsonplaceholder.typicode.com/posts").then((res) => {
-        commit("setPost", res.data);
+        commit("SET_POST", res.data);
       });
     },
     validate({ commit }, name) {
-      commit("validator", name);
+      commit("VALIDATOR", name);
     },
     async addPost({ commit }, data) {
       try {
@@ -52,7 +52,7 @@ const store = createStore({
           { data }
         );
         console.log(res);
-        commit("addPost", data);
+        commit("ADD_POST", data);
       } catch (error) {
         console.log(error);
       }
@@ -83,13 +83,13 @@ const store = createStore({
     },
   },
   mutations: {
-    setPost(state, data) {
+    SET_POST(state, data) {
       state.posts = data;
     },
-    validator(state, name) {
+    VALIDATOR(state, name) {
       state.filed.validate(name);
     },
-    addPost(state, data) {
+    ADD_POST(state, data) {
       state.posts.unshift(data);
       state.startCheck.push(1);
       console.log(state.startCheck);
