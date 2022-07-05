@@ -6,9 +6,9 @@ const store = createStore({
     checkCreated: false,
     isShowButton: false,
     postEditId: "",
-    startCheck:[],
+    startCheck: [],
     posts: [],
-    backPost:false,
+    backPost: false,
     columns: ["id", "title", "body", "Handle"],
     filed: {
       title: "",
@@ -38,11 +38,9 @@ const store = createStore({
 
   actions: {
     loadPosts({ commit }) {
-      axios
-        .get("https://jsonplaceholder.typicode.com/posts")
-        .then((res) => {
-          commit("setPost", res.data);
-        });
+      axios.get("https://jsonplaceholder.typicode.com/posts").then((res) => {
+        commit("setPost", res.data);
+      });
     },
     validate({ commit }, name) {
       commit("validator", name);
@@ -80,9 +78,9 @@ const store = createStore({
     toggleCheckCreated({ commit }) {
       commit("toggleCheckCreated");
     },
-    backPost({ commit }){
+    backPost({ commit }) {
       commit("backPost");
-    }
+    },
   },
   mutations: {
     setPost(state, data) {
@@ -95,7 +93,6 @@ const store = createStore({
       state.posts.unshift(data);
       state.startCheck.push(1);
       console.log(state.startCheck);
-      
     },
     deletePosts(state, id) {
       state.posts = state.posts.filter((post) => post.id !== id);
@@ -119,10 +116,9 @@ const store = createStore({
     toggleCheckCreated(state) {
       state.checkCreated = true;
     },
-    backPost(state){
-      state.backPost=!state.backPost;
-       
-    }
+    backPost(state) {
+      state.backPost = !state.backPost;
+    },
   },
 });
 

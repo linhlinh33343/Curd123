@@ -8,7 +8,11 @@
     <div class="pricing-header">
       <h2>Post Management</h2>
     </div>
-    <router-link to="/create" @click="showButtonCreate()"><button type="button" class="btn btn-info btn-add">Add New</button></router-link>
+    <router-link to="/create" @click="showButtonCreate()"
+      ><button type="button" class="btn btn-info btn-add">
+        Add New
+      </button></router-link
+    >
     <div class="container">
       <div class="card-deck">
         <table class="table table-bordered">
@@ -20,11 +24,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr scope="row" v-for="(post,index) in postsOnPage" :key="post.id">
+            <tr scope="row" v-for="(post, index) in postsOnPage" :key="post.id">
               <td>{{ index + 1 }}</td>
               <td>{{ post.title }}</td>
               <td>{{ post.body }}</td>
-              <td  class="buttonPost">
+              <td class="buttonPost">
                 <router-link
                   :to="{ name: 'posts.edit', params: { id: post.id } }"
                 >
@@ -45,40 +49,32 @@
         </table>
       </div>
     </div>
-    
-
   </div>
 </template>
 
 <script>
-
 import { mapState } from "vuex";
 export default {
   name: "ListVue",
-  component:{
-  
-  },
+  component: {},
   data() {
     return {
-   
       check: true,
       amountPages: 10,
       currentPage: 1,
       postsOnPage: [],
- 
-
     };
   },
- 
+
   computed: {
-    ...mapState(["posts", "columns", "checkCreated","startCheck","backPost"]),
+    ...mapState(["posts", "columns", "checkCreated", "startCheck", "backPost"]),
     checkPost() {
       return this.posts;
     },
-    checkPage(){
+    checkPage() {
       return this.startCheck.length;
     },
-    
+
     startPost() {
       const startPost = (this.currentPage - 1) * this.amountPages;
       return startPost;
@@ -95,8 +91,6 @@ export default {
       let pageNumber = this.postAmount / this.amountPages;
       return Math.ceil(pageNumber);
     },
-    
-
   },
   created() {
     if (this.checkCreated == false) {
@@ -104,26 +98,25 @@ export default {
     }
   },
   watch: {
-    checkPost : {
+    checkPost: {
       immediate: true,
       handler() {
         this.handleAmountPage(this.currentPage);
       },
     },
-    checkPage(){
-      this.handleAmountPage(1)
+    checkPage() {
+      this.handleAmountPage(1);
     },
-    
-    backPost(){
-      console.log('back');
-    }
+
+    backPost() {
+      console.log("back");
+    },
   },
   methods: {
-     handleAmountPage(value) {
+    handleAmountPage(value) {
       console.log("check value ", value);
       this.currentPage = value;
       this.postsOnPage = this.posts.slice(this.startPost, this.endPost);
-      
     },
     deletePost(id) {
       this.$swal
@@ -147,7 +140,7 @@ export default {
       this.$store.dispatch("editId", id);
     },
     showButtonCreate() {
-      console.log('123');
+      console.log("123");
       this.$store.dispatch("showButtonCreate");
     },
   },
@@ -156,17 +149,16 @@ export default {
 
 <style>
 .buttonPost {
- 
   border-bottom: none;
 }
-.btn-add{
+.btn-add {
   margin-bottom: 20px;
 }
-.table td{
-  vertical-align:middle;
+.table td {
+  vertical-align: middle;
 }
-.table th:last-child{
-  width:170px
+.table th:last-child {
+  width: 170px;
 }
 .btn-page {
   cursor: pointer;
@@ -175,6 +167,9 @@ export default {
   margin-right: 10px;
   margin-top: 10px;
   margin-bottom: 40px;
+  border: 1px solid transparent;
+  outline: 1px solid red;
+  border-radius: 25px;
 }
 .btn-add-post {
   padding: 10px 20px;

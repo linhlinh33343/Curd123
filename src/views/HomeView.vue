@@ -52,15 +52,15 @@
               </button>
               &nbsp;
               <router-link class="linkrouter" to="/list">
-              <button
-                type="reset"
-                v-show="!isShowButton"
-                class="btn btn-danger"
-                @click="clickCancel"
-              >
-                Back
-              </button>
-              </router-link> 
+                <button
+                  type="reset"
+                  v-show="!isShowButton"
+                  class="btn btn-danger"
+                  @click="clickCancel"
+                >
+                  Back
+                </button>
+              </router-link>
               <button
                 type="button"
                 v-show="isShowButton"
@@ -95,7 +95,6 @@ export default {
   },
   components: {},
   created() {
-  
     if (this.postEditId) {
       console.log("sửa");
       this.getPost(this.postEditId);
@@ -135,12 +134,8 @@ export default {
       }
     },
     clickCancel() {
-      (this.getFiledInput.title = ""), 
-      (this.getFiledInput.body = "");
-      this.$store.dispatch("backPost");  
-
-      
-      
+      (this.getFiledInput.title = ""), (this.getFiledInput.body = "");
+      this.$store.dispatch("backPost");
     },
     getPost(id) {
       this.posts.forEach((element) => {
