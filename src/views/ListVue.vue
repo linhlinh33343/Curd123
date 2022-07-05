@@ -160,6 +160,14 @@ export default {
 .table th:last-child {
   width: 170px;
 }
+
+.table th:not(:last-child) {
+  width: 300px;
+}
+.table th:first-child {
+  width: 50px;
+}
+
 .btn-page {
   cursor: pointer;
   padding: 8px 30px;

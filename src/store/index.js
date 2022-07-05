@@ -58,28 +58,28 @@ const store = createStore({
       }
     },
     toggleCheckCreate({ commit }) {
-      commit("toggleCheckCreate");
+      commit("TOGGLE_CHECK_CREATE");
     },
     deletePosts({ commit }, id) {
-      commit("deletePosts", id);
+      commit("DELETE_POSTS", id);
     },
     showButtonEdit({ commit }) {
-      commit("showButtonEdit");
+      commit("SHOW_BUTTON_EDIT");
     },
     showButtonCreate({ commit }) {
-      commit("showButtonCreate");
+      commit("SHOW_BUTTON_CREATE");
     },
     editId({ commit }, id) {
-      commit("editId", id);
+      commit("EDIT_ID", id);
     },
     updatePost({ commit }, newPost) {
-      commit("updatePost", newPost);
+      commit("UPDATE_POST", newPost);
     },
     toggleCheckCreated({ commit }) {
-      commit("toggleCheckCreated");
+      commit("TOGLLE_CHECK_CREATED");
     },
     backPost({ commit }) {
-      commit("backPost");
+      commit("BACK_POST");
     },
   },
   mutations: {
@@ -94,29 +94,29 @@ const store = createStore({
       state.startCheck.push(1);
       console.log(state.startCheck);
     },
-    deletePosts(state, id) {
+    DELETE_POSTS(state, id) {
       state.posts = state.posts.filter((post) => post.id !== id);
     },
-    showButtonEdit(state) {
+    SHOW_BUTTON_EDIT(state) {
       state.isShowButton = true;
     },
-    showButtonCreate(state) {
+    SHOW_BUTTON_CREATE(state) {
       state.isShowButton = false;
     },
-    editId(state, id) {
+    EDIT_ID(state, id) {
       state.postEditId = id;
     },
-    updatePost(state, newPost) {
+    UPDATE_POST(state, newPost) {
       state.posts.forEach((post, index) => {
         if (post.id == newPost.id) {
           state.posts[index] = newPost;
         }
       });
     },
-    toggleCheckCreated(state) {
+    TOGLLE_CHECK_CREATED(state) {
       state.checkCreated = true;
     },
-    backPost(state) {
+    BACK_POST(state) {
       state.backPost = !state.backPost;
     },
   },
